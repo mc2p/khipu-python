@@ -240,3 +240,30 @@ class GetPayment(KhipuService):
             raise KhipuError('notification_token field is necessary.')
 
         self.request()  # Llamar al servicio Khipu
+
+
+class RefundPayment(KhipuService):
+    """
+    Obtener la info de un pago mediante un Token que Khipu nos proporciona.
+    @Parameters
+        payment_id: Identificador del pago.
+    @Return Values:
+        message:
+            String de respuesta
+    """
+
+    def __init__(self, receiver_id, secret, service_name, **kwargs):
+        super(RefundPayment, self).__init__(receiver_id, secret, service_name, **kwargs)
+        self.method = 'POST'
+        payment_id = kwargs.get('payment_id')
+        if not payment_id:
+            raise KhipuError('payment_id field is necessary.')
+        self.path = 'payments/%s/refunds' % payment_id
+        
+        amount = kwargs.get('amount', None)
+        if amount:
+            self.data = {"amount": amount}
+        else:
+            self.data = {}
+
+        self.request()  # Llamar al servicio Khipu
