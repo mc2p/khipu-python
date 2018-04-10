@@ -16,6 +16,7 @@ class Khipu(object):
             'GetBanks',
             'CreatePayment',
             'GetPayment',
+            'RefundPayment'
         ]
 
     def service(self, service_name,  **kwargs):
