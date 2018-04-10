@@ -24,7 +24,6 @@ class KhipuService(object):
         self.receiver_id = receiver_id
         # Llave del cobrador
         self.secret = secret
-        print(self.secret)
         # Nombre del servicio
         self.service_name = service_name
         # Metodo que se usara
